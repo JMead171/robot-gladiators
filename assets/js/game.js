@@ -3,28 +3,24 @@ var playerHealth = 100;
 var playerAttack = 10;
 var playerMoney = 10;
 
-// You can also log multiple values at once like this
-console.log(playerName, playerAttack, playerHealth);
-
-var enemyName = "Roborto";
+var enemyNames = ["Roborto", "Amy Andriod", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 12;
 
-var fight = function() {
-    // Alert users that they are starting the round
+
+var fight = function(enemyName) {
     window.alert("Welcome to Robot Gladiators!");
 }
 
-fight();
+//Enemy robot for loop
+for(var i = 0; i < enemyNames.length; i++) {
+   var enemyName = enemyNames[i];
 
 var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle?  Enter 'FIGHT or 'SKIP' to choose.");
 
-//if player choses to fight, then fight
 if (promptFight ==="fight" || promptFight ==="FIGHT") {
-    //remove enemy's health bu subtracting the amount set in the player Attack
     enemyHealth = enemyHealth - playerAttack;
-    console.log( playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
-    );
+    console.log(playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining.");
 
     //Check enemy's health
     if (enemyHealth <= 0) {
@@ -34,7 +30,7 @@ if (promptFight ==="fight" || promptFight ==="FIGHT") {
         window.alert(enemyName + " still has " + enemyHealth + " health left.");
     }
 
-    //Subtract the value of "enemyAttack" from "playerHealth" and use that result to update value in "playerHealth"
+    //Subtract Health
     playerHealth = playerHealth - enemyAttack;
     console.log(enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining.");
 
@@ -56,8 +52,11 @@ if (promptFight ==="fight" || promptFight ==="FIGHT") {
         playerMoney = playerMoney -2;
     }
     else {
-        fight();
+        fight(enemyName);
     }
 } else {
     window.alert("You need to pick a valid option. Try again!");
+    }
+
+    fight(enemyNames[i]);
 }
